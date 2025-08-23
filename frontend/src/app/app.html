@@ -1,0 +1,68 @@
+<div class="min-h-screen p-6 lg:p-10 bg-gray-100">
+  <div class="mx-auto max-w-2xl">
+    <header class="mb-6 flex items-center justify-between">
+      <h1 class="text-3xl font-bold tracking-tight">Tasks</h1>
+      <nav class="flex gap-2 rounded-full bg-white shadow-soft p-1 border border-gray-100">
+        <button
+          (click)="filter.set('all')"
+          class="px-4 py-1 rounded-full text-sm"
+          [class.bg-gray-900]="filter() === 'all'"
+          [class.text-white]="filter() === 'all'"
+        >
+          All
+        </button>
+        <button
+          (click)="filter.set('active')"
+          class="px-4 py-1 rounded-full text-sm"
+          [class.bg-gray-900]="filter() === 'active'"
+          [class.text-white]="filter() === 'active'"
+        >
+          Active
+        </button>
+        <button
+          (click)="filter.set('completed')"
+          class="px-4 py-1 rounded-full text-sm"
+          [class.bg-gray-900]="filter() === 'completed'"
+          [class.text-white]="filter() === 'completed'"
+        >
+          Completed
+        </button>
+      </nav>
+    </header>
+
+    <section class="mb-4 rounded-2xl bg-white shadow-soft border border-gray-100">
+      <div class="p-4 md:p-6 flex gap-3">
+        <input
+          [ngModel]="newTitle()"
+          (ngModelChange)="newTitle.set($event)"
+          (keyup.enter)="add()"
+          placeholder="Add a new task…"
+          class="flex-1 rounded-xl border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gray-900"
+        />
+        <button
+          (click)="add()"
+          class="rounded-xl px-5 py-3 bg-gray-900 text-white font-medium hover:opacity-90 active:scale-[.98]"
+        >
+          Add
+        </button>
+      </div>
+    </section>
+
+    <section class="rounded-2xl bg-white shadow-soft border border-gray-100">
+      <ul class="divide-y">
+        <li *ngFor="let t of filteredTodos()" class="flex items-center justify-between p-4">
+          <div class="flex items-center gap-3">
+            <input
+              type="checkbox"
+              [checked]="t.completed"
+              (change)="toggle(t)"
+              class="h-5 w-5 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+            />
+            <span [class.line-through]="t.completed" class="text-lg">{{ t.title }}</span>
+          </div>
+          <button (click)="remove(t)" class="text-red-500 hover:underline">Delete</button>
+        </li>
+      </ul>
+    </section>
+  </div>
+</div>
