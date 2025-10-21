@@ -1,4 +1,4 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal, computed, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -15,13 +15,13 @@ interface Todo {
   imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './app.html',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Angular 22 TODO App';
   newTitle = signal('');
   todos = signal<Todo[]>([]);
   filter = signal<'all' | 'active' | 'completed'>('all');
+  http = inject(HttpClient);
 
-  // Computed filtered list
   filteredTodos = computed(() => {
     const f = this.filter();
     if (f === 'active') return this.todos().filter((t) => !t.completed);
@@ -29,9 +29,7 @@ export class AppComponent {
     return this.todos();
   });
 
-  constructor(private http: HttpClient) {
-    this.loadTodos();
-  }
+  constructor() {}
 
   loadTodos() {
     this.http
@@ -46,8 +44,8 @@ export class AppComponent {
     const todo: Todo = { title, completed: false };
 
     this.http.post<Todo>('http://localhost:3000/api/todos', todo).subscribe((t) => {
-      this.todos.update((list) => [...list, t]); // replaces mutate()
-      this.newTitle.set(''); // clear input
+      this.todos.update((list) => [...list, t]);
+      this.newTitle.set('');
     });
   }
 
@@ -63,5 +61,10 @@ export class AppComponent {
     this.http.delete(`http://localhost:3000/api/todos/${todo._id}`).subscribe(() => {
       this.todos.update((list) => list.filter((t) => t._id !== todo._id));
     });
+  }
+
+  ngOnInit() {
+    console.log('21-10-2025');
+    this.loadTodos();
   }
 }

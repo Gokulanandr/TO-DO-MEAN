@@ -12,10 +12,10 @@ app.use(cors());
 
 app.get("/health", (_req, res) => res.json({ ok: true }));
 app.use("/api/todos", todosRouter);
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/TO-DO-MEAN")
+  .connect(process.env.MONGO_URI)
   .then(() => {
     app.listen(PORT, () =>
       console.log(`API running on http://localhost:${PORT}`)
