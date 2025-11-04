@@ -1,8 +1,3 @@
-This is a comprehensive and professionally formatted README file. Here is the content in a clean, copy-paste format, ready for your `README.md` file.
-
------
-
-````markdown
 # ✅ To-Do App
 
 A simple and efficient **task management application** built using the **MEAN Stack**, enabling users to create, update, mark complete, and delete tasks with persistent data storage via a local **MongoDB** setup.
@@ -32,10 +27,11 @@ A simple and efficient **task management application** built using the **MEAN St
 ## ⚙️ Installation & Setup
 
 ### 1. Clone the Repository
+
 ```bash
 git clone [https://github.com/Gokulanandr/todo-app.git](https://github.com/Gokulanandr/todo-app.git)
 cd todo-app
-````
+```
 
 ### 2\. Install Dependencies
 
@@ -92,7 +88,7 @@ Frontend → http://localhost:4200
 Backend  → http://localhost:4000
 ```
 
------
+---
 
 ## 🧩 API Endpoints
 
@@ -105,13 +101,13 @@ Fetches all tasks sorted by creation date (newest first).
 
 **POST** `/api/todos`
 Creates a new task.
-*Body: `{ "title": "Task name" }`*
+_Body: `{ "title": "Task name" }`_
 
 ### 🔹 Update Task (Edit/Toggle Complete)
 
 **PATCH** `/api/todos/:id`
 Updates the title or completion status of a task.
-*Body: `{ "title": "New title", "completed": true }`*
+_Body: `{ "title": "New title", "completed": true }`_
 
 ### 🔹 Delete Task
 
@@ -123,7 +119,7 @@ Deletes a specific task by ID.
 **DELETE** `/api/todos`
 Removes all tasks marked as completed.
 
------
+---
 
 ## 🧠 How It Works
 
@@ -131,16 +127,16 @@ Removes all tasks marked as completed.
 2.  Data is stored locally in MongoDB for persistence, managed via Mongoose.
 3.  The Angular frontend communicates with the backend to display and manage tasks in real-time.
 
------
+---
 
 ## 💡 Future Enhancements
 
-  * Add user authentication and task ownership.
-  * Include due dates and task prioritization.
-  * Implement drag-and-drop task reordering.
-  * Add progress tracking and analytics dashboard.
+- Add user authentication and task ownership.
+- Include due dates and task prioritization.
+- Implement drag-and-drop task reordering.
+- Add progress tracking and analytics dashboard.
 
------
+---
 
 ## 🧑‍💻 Author
 
@@ -150,5 +146,8 @@ Removes all tasks marked as completed.
 🔗 [LinkedIn](https://www.linkedin.com/in/gokulanandr) |
 💻 [GitHub](https://github.com/Gokulanandr) |
 
------
+---
+
+```
+
 ```
